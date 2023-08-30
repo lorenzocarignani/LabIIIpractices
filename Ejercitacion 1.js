@@ -15,18 +15,17 @@ let input = [
   { name: "Sophie", age: 19, city: "Berlin" },
 ];
 
-let names = input.map((item) => item.name);
-
-console.log(names);
-
+const nameReturn = (inputValue) => inputValue.map((item) => item.name);
+console.log(nameReturn(input));
 // 2. Crear un arreglo de nombres a partir del arreglo anterior pero solo para las
 // personas mayores de 20 años y menores de 29.
 
-let ageNames = input
-  .filter((mayores) => mayores.age > 20 && mayores.age < 29)
-  .map((item) => item.name);
+const ageNames = (input) =>
+  input
+    .filter((mayores) => mayores.age > 20 && mayores.age < 29)
+    .map((item) => item.name);
 
-console.log(ageNames);
+console.log(ageNames(input));
 
 // 3. Dado un arreglo de objetos de países que poseen dos propiedades: name y
 // population, ordenarlos de mayor a menor en cuanto a su población utilizando la
