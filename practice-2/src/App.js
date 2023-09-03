@@ -3,6 +3,7 @@ import Beers from "./components/beers/Beers";
 import Family from "./components/family/Family";
 import Persons from "./components/persons/Persons";
 import Products from "./components/products/Products";
+import Table from "./components/table/Table";
 
 function App() {
   const products = ["table", "couch", "chair1", "chair2"];
@@ -14,12 +15,18 @@ function App() {
     { name: "Paula", age: 25 },
     { name: "Andrés", age: 20 },
   ];
+  const netIncomes = [
+    { brand: "McDonalds", income: 1291283 },
+    { brand: "Burger King", income: 1927361 },
+    { brand: "KFC", income: 1098463 },
+  ];
   return (
     <div className="App">
       <Beers />
       <Products products={products} />
       <Persons names={names} />
       <Family persons={persons} />
+      <Table netIcomes={netIncomes} />
     </div>
   );
 }
