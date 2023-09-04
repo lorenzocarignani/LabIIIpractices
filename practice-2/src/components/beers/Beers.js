@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import BeerItem from "../beerItem/BeerItem";
 import "../beers/Beers.css";
 import BeerCount from "../beerCount/BeerCount";
 import StyleBeer from "../styleBeer/StyleBeer";
+import ChangeDollar from "../changeDollar/ChangeDollar";
+import NewBeer from "../newBeer/NewBeer";
 
 const Beers = () => {
   const beers = [
@@ -72,9 +74,22 @@ const Beers = () => {
   ];
 
   const availableBeers = beers.filter((beer) => beer.available);
+  const [dollar, setDollar] = useState("");
+  const [showDollar, setShowDollar] = useState(false)
+
+  const ChangeDollarHandler = (value) => {
+    setDollar(value)
+  }
 
   return (
     <div>
+      <button onClick={() => setShowDollar(!showDollar)}>
+      {showDollar ? "Ocultar cotizador del dolar" : "Mostrar cotizador de dolar"}
+      </button>
+      {showDollar && (
+      <ChangeDollar valueDollar={dollar} onChangeDolarHandler={ChangeDollarHandler} />
+      )}
+      <NewBeer addBeer={addBeer}/>
       {beers.map((beers, index) => (
         <BeerItem
           key={beers.id}
@@ -82,6 +97,7 @@ const Beers = () => {
           beerName={beers.beerName}
           beerStyle={beers.beerStyle}
           price={beers.price}
+          dollar={dollar}
         />
       ))}
       <br />
