@@ -1,6 +1,7 @@
 import "./App.css";
 import Beers from "./components/beers/Beers";
 import Family from "./components/family/Family";
+import Login from "./components/login/Login";
 import Persons from "./components/persons/Persons";
 import Products from "./components/products/Products";
 import Table from "./components/table/Table";
@@ -26,7 +27,8 @@ function App() {
       <Products products={products} />
       <Persons names={names} />
       <Family persons={persons} />
-      <Table netIcomes={netIncomes} />
+      <Table netIncomes={netIncomes} />
+      <Login />
     </div>
   );
 }

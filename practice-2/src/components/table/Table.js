@@ -1,9 +1,9 @@
 import React from "react";
 import "./Table.css";
 
-const Table = ({ netIcomes }) => {
-  const averageIncome = netIcomes.reduce((a, b) => a + b.income, 0);
-  const total = averageIncome / netIcomes.length;
+const Table = ({ netIncomes }) => {
+  const averageIncome = netIncomes.reduce((a, b) => a + b.income, 0);
+  const total = averageIncome / netIncomes.length;
   return (
     <div>
       <table className="table">
@@ -12,7 +12,7 @@ const Table = ({ netIcomes }) => {
           <th>Income</th>
         </thead>
         <tbody>
-          {netIcomes.map((br, index) => (
+          {netIncomes.map((br, index) => (
             <tr key="index + 1">
               <td>{br.brand}</td>
               <td>{br.income}</td>

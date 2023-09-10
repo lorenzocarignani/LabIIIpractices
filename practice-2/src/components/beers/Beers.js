@@ -75,21 +75,26 @@ const Beers = () => {
 
   const availableBeers = beers.filter((beer) => beer.available);
   const [dollar, setDollar] = useState("");
-  const [showDollar, setShowDollar] = useState(false)
+  const [showDollar, setShowDollar] = useState(false);
 
   const ChangeDollarHandler = (value) => {
-    setDollar(value)
-  }
+    setDollar(value);
+  };
 
   return (
     <div>
       <button onClick={() => setShowDollar(!showDollar)}>
-      {showDollar ? "Ocultar cotizador del dolar" : "Mostrar cotizador de dolar"}
+        {showDollar
+          ? "Ocultar cotizador del dolar"
+          : "Mostrar cotizador de dolar"}
       </button>
       {showDollar && (
-      <ChangeDollar valueDollar={dollar} onChangeDolarHandler={ChangeDollarHandler} />
+        <ChangeDollar
+          valueDollar={dollar}
+          onChangeDolarHandler={ChangeDollarHandler}
+        />
       )}
-      <NewBeer addBeer={addBeer}/>
+      <NewBeer />
       {beers.map((beers, index) => (
         <BeerItem
           key={beers.id}
