@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Login = () => {
   const [user, setUser] = useState("");
+  const [hideLogin, setHideLogin] = useState(false);
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -21,12 +22,17 @@ const Login = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Usuario"
-        onChange={handleInputChange}
-        value={user}
-      />
+      <button onClick={() => setHideLogin(!hideLogin)}>
+        {hideLogin ? "<-" : "Iniciar sesion"}
+      </button>
+      {hideLogin && (
+        <input
+          type="text"
+          placeholder="Usuario"
+          onChange={handleInputChange}
+          value={user}
+        />
+      )}
       <button onClick={handleSubmit}>Registrarse</button>
       <p>
         {loginEmpty ? "No contiene caracteres" : ""}

@@ -1,62 +1,61 @@
-import React, { useState, useRef } from "react";
+import React from "react";
+import { useRef } from "react";
+import { useState } from "react";
 
-function Scoreboard({ maxScore }) {
-  const [scoreTeamA, setScoreTeamA] = useState(0);
-  const [scoreTeamB, setScoreTeamB] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const invalidInputRef = useRef(null);
+const ScoreBoard = ({ maxScore }) => {
+  const [pointTeamA, setPointTeamA] = useState(0);
+  const [pointTeamB, setPointTeamB] = useState(0);
+  const [maxPoint, setMaxPoint] = useState("");
+  const invalidPoint = useRef(null);
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const finishPointChange = (e) => {
+    setMaxPoint(e.target.value);
   };
 
-  const handleCheckScore = () => {
-    const parsedValue = parseInt(inputValue);
-
+  const pointsHandler = () => {
+    const parsedValue = parseInt(maxPoint);
     if (parsedValue >= 18 && parsedValue <= 30) {
-      setScoreTeamA(0);
-      setScoreTeamB(0);
+      setPointTeamA(0);
+      setPointTeamB(0);
       maxScore.current = parsedValue;
     } else {
-      invalidInputRef.current.textContent =
-        "Valor no válido. Introduce un valor entre 18 y 30.";
+      invalidPoint.current.textContent = "Valor no valido ";
     }
   };
 
-  const handleIncrementScore = (team) => {
+  const addPointTeamHandler = (team) => {
     if (team === "A") {
-      setScoreTeamA(scoreTeamA + 1);
-    } else if (team === "B") {
-      setScoreTeamB(scoreTeamB + 1);
+      setPointTeamA(pointTeamA + 1);
+    } else {
+      setPointTeamB(pointTeamB + 1);
     }
-
-    if (scoreTeamA === maxScore.current || scoreTeamB === maxScore.current) {
+    if (pointTeamA === maxScore.current || pointTeamB === maxScore.current) {
       alert("¡Equipo ganador!");
-      setScoreTeamA(0);
-      setScoreTeamB(0);
-      maxScore.current = 0;
+      setPointTeamA(0);
+      setPointTeamB(0);
+      maxScore.current(0);
     }
   };
-
   return (
     <div>
-      <h1>Scoreboard</h1>
-      <p>Puntaje máximo: {maxScore.current}</p>
-      <input type="number" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleCheckScore}>Comprobar Puntaje</button>
-      <div>
-        <button onClick={() => handleIncrementScore("A")}>
-          Aumentar Puntaje Equipo A
-        </button>
-        <button onClick={() => handleIncrementScore("B")}>
-          Aumentar Puntaje Equipo B
-        </button>
-      </div>
-      <p>Equipo A: {scoreTeamA}</p>
-      <p>Equipo B: {scoreTeamB}</p>
-      <p ref={invalidInputRef} style={{ color: "red" }}></p>
+      <input
+        type="number"
+        placeholder="Numero de finalizacion"
+        value={maxPoint}
+        onChange={finishPointChange}
+      />
+      <button onClick={pointsHandler}>Cambiar </button>
+      <h2>Equipo A: {pointTeamA}</h2>
+      <button onClick={() => addPointTeamHandler("A")}>
+        Aumentar puntaje equipo A
+      </button>
+      <h2>Equipo B: {pointTeamB}</h2>
+      <button onClick={() => addPointTeamHandler("B")}>
+        Aumentar puntaje equipo B
+      </button>
+      <p ref={invalidPoint} style={{ color: "red" }}></p>
     </div>
   );
-}
+};
 
-export default Scoreboard;
+export default ScoreBoard;
